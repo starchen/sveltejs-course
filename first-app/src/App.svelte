@@ -5,6 +5,25 @@
   let title = "";
   let image = "";
   let description = "";
+
+  let formStatus = 'empty';
+  let createdContacts = [];
+  function addContact() {
+	  if(name.trim().length == 0 
+	  || title.trim().length == 0
+	  || image.trim().length == 0
+	  || description.trim().length ==0) {
+		  formStatus = 'invalid';
+		  return;
+	  }
+	  createdContacts=  [...createdContacts, {
+		  name: name,
+		  title: title,
+		  image: image,
+		  description: description
+	  }];
+	  formStatus = 'done';
+  }
 </script>
 
 <style>
@@ -16,7 +35,7 @@
 
 <div id="form">
   <div class="form-control">
-    <label for="userName">User Name</label>
+    <label for="userName">UserName</label>
     <input type="text" bind:value={name} id="userName" />
   </div>
   <div class="form-control">
@@ -32,5 +51,17 @@
     <textarea rows="3" bind:value={description} id="desc" />
   </div>
 </div>
+<button on:click="{addContact}">Add contact card</button>
 
-<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{#if formStatus === 'invalid'}
+<p>Invalid form</p>
+{:else}
+<p>No contact card yet</p>
+{/if}
+
+{#each createdContacts as card, i }
+<h2>{i + 1}</h2>
+<ContactCard userName={card.name} jobTitle={card.title} description={card.description} userImage={card.image} />
+{:else}
+<p>No contact card</p>
+{/each }
