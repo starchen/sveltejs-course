@@ -1,43 +1,36 @@
 <script>
-	import ContactCard from "./ContactCard.svelte";
-	let name = 'Lon';
-	let age = 36;
-	let imageSrc = "";
-	let jobTitle = "";
-	let shortDesc= "";
+  import ContactCard from "./ContactCard.svelte";
 
-	function incrementAge() {
-		age += 1;
-	}
-
-	$: doubleAge = age * 2;
-	$: console.log(age);
-	$: if(age > 50) {
-		age = 20;
-	}
-
-	function nameInputChanged(event) {
-		name = event.target.value;
-	}
+  let name = "Max";
+  let title = "";
+  let image = "";
+  let description = "";
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
+  #form {
+    width: 30rem;
+    max-width: 100%;
+  }
 </style>
 
-<h1>Hello {name}, my age is {age}, my double age is {doubleAge}!</h1>
-<button on:click="{incrementAge}">Change Age</button>
-<label for="name">Name</label>
-<input id="name" type="text" value="{name}" on:input="{nameInputChanged}"/>
-<label for="2-way-binding-name">Two-way binding Name</label>
-<input id="2-way-binding-name" type="text" bind:value="{name}"/>
-<label for="jobTitle">Job Title</label>
-<input id="jobTitle" type="text" bind:value="{jobTitle}"/>
-<label for="shortDesc">Short Description</label>
-<textarea id="shortDesc" bind:value="{shortDesc}" rows=3></textarea>
-<label for="imageSource">Image Source Url</label>
-<input id="imageSource" type="url" bind:value="{imageSrc}"/>
+<div id="form">
+  <div class="form-control">
+    <label for="userName">User Name</label>
+    <input type="text" bind:value={name} id="userName" />
+  </div>
+  <div class="form-control">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" bind:value={title} id="jobTitle" />
+  </div>
+  <div class="form-control">
+    <label for="image">Image URL</label>
+    <input type="text" bind:value={image} id="image" />
+  </div>
+  <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea rows="3" bind:value={description} id="desc" />
+  </div>
+</div>
 
-<ContactCard userName="{name}" {imageSrc} {jobTitle} {shortDesc}/>
+<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
