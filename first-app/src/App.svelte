@@ -40,4 +40,4 @@
 <label for="imageSource">Image Source Url</label>
 <input id="imageSource" type="url" bind:value="{imageSrc}"/>
 
-<ContactCard userName="{name}" imageSrc="{imageSrc}" jobTitle="{jobTitle}" shortDesc="{shortDesc}"/>
+<ContactCard userName="{name}" {imageSrc} {jobTitle} {shortDesc}/>
