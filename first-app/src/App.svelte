@@ -1,7 +1,10 @@
 <script>
 	import ContactCard from "./ContactCard.svelte";
-	let name = 'Max';
-	let age = 30;
+	let name = 'Lon';
+	let age = 36;
+	let imageSrc = "";
+	let jobTitle = "";
+	let shortDesc= "";
 
 	function incrementAge() {
 		age += 1;
@@ -26,7 +29,15 @@
 
 <h1>Hello {name}, my age is {age}, my double age is {doubleAge}!</h1>
 <button on:click="{incrementAge}">Change Age</button>
-<input type="text" value="{name}" on:input="{nameInputChanged}"/>
-<input type="text" bind:value="{name}"/>
+<label for="name">Name</label>
+<input id="name" type="text" value="{name}" on:input="{nameInputChanged}"/>
+<label for="2-way-binding-name">Two-way binding Name</label>
+<input id="2-way-binding-name" type="text" bind:value="{name}"/>
+<label for="jobTitle">Job Title</label>
+<input id="jobTitle" type="text" bind:value="{jobTitle}"/>
+<label for="shortDesc">Short Description</label>
+<textarea id="shortDesc" bind:value="{shortDesc}" rows=3></textarea>
+<label for="imageSource">Image Source Url</label>
+<input id="imageSource" type="url" bind:value="{imageSrc}"/>
 
-<ContactCard />
+<ContactCard userName="{name}" imageSrc="{imageSrc}" jobTitle="{jobTitle}" shortDesc="{shortDesc}"/>
