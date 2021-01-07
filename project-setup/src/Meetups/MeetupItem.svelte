@@ -1,7 +1,9 @@
 <script>
+    import {createEventDispatcher} from 'svelte';
     export let meetup;
 
     const {id, title, subtitle, description, contact} = meetup
+    const dispatch = createEventDispatcher();
 </script>
 
 <style>
@@ -36,7 +38,7 @@
     </div>
     <footer>
         <a href="mailto:{contact}">Mail</a>
-        <button>Show details</button>
-        <button>Favorite</button>
+        <button on:click="{() => dispatch('show-details', id)}">Show details</button>
+        <button on:click="{() => dispatch('trigger-favorite', id)}">Favorite</button>
     </footer>
 </article>

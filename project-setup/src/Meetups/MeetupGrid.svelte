@@ -21,6 +21,9 @@
 
 <section id="meetups">
     {#each meetups as meetup}
-        <MeetupItem {meetup} />
+        <MeetupItem
+            {meetup}
+            on:show-details={(event) => window.alert(event.detail)}
+            on:trigger-favorite={(event)=>console.log(event.detail)}/>
     {/each}
 </section>
